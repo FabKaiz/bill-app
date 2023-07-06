@@ -86,8 +86,11 @@ export default class {
   }
 
   handleEditTicket(e, bill, bills) {
+    // si on change de ticket, on remet le compteur à 0
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+    // si on change de ticket ou l'id est undefined, on met à jour l'id actuelle avec l'id du ticket selectionné
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
+    // si le compteur est pair, on affiche le formulaire
     if (this.counter % 2 === 0) {
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
@@ -146,7 +149,18 @@ export default class {
     }
 
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      /*
+      * .off(): Cela permet de supprimer tous les gestionnaires d'événements précédemment
+      * attachés à l'élément sélectionné. Cela garantit qu'il n'y a pas de doublons
+      * d'événements attachés à l'élément.
+      *
+      * .on('click', (e) => this.handleEditTicket(e, bill, bills)): Cela attache un nouvel
+      * événement de clic à l'élément sélectionné. Lorsque l'élément est cliqué, la fonction
+      * handleEditTicket est appelée avec les arguments e, bill et bills.
+      *
+      * Le bug etait que l'evenement click etait attaché plusieurs fois à l'element
+      * */
+      $(`#open-bill${bill.id}`).off().on('click', (e) => this.handleEditTicket(e, bill, bills));
     })
 
     return bills
