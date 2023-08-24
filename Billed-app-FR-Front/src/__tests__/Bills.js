@@ -15,6 +15,7 @@ import router from "../app/Router.js";
 
 jest.mock("../app/Store", () => mockStore)
 
+// Check si l'icone s'affiche sur la gauche est surligner
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
     test("Then bill icon in vertical layout should be highlighted", async () => {
@@ -41,6 +42,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
+  // Quand je suis sur la page bills alors la page doit s'afficher correctement
   describe("When I navigate to Bills", () => {
     test("Then the page should show properly", async () => {
       const onNavigate = (pathname) => {
@@ -59,6 +61,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
+  // Quand je clique sur le bouton "Nouvelle note de frais" alors la page "Nouvelle note de frais" s'affiche
   describe("When I click on 'New expense report' btn", () => {
     test("Then the create a new bill form should appear", async () => {
       const onNavigate = (pathname) => {
@@ -85,7 +88,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
-
+// Quand je clique sur le bouton oeil, alors la modale doit s'afficher
   describe("When I click on the 'eye' btn of a bill", () => {
     test("Then a modal must appear", async () => {
       const onNavigate = (pathname) => {
@@ -112,7 +115,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 
-   // TEST INTEGRATION - GET
+   // TEST INTEGRATION - GET 404 - 500
   describe("When an error occurs on getting data with API", () => {
     beforeEach(() => {
       jest.spyOn(mockStore, "bills")

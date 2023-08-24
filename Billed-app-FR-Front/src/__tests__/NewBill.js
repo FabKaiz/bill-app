@@ -14,6 +14,9 @@ import router from "../app/Router.js";
 
 jest.mock("../app/Store", () => mockStore)
 
+// Je suis connecté en tant qu'employé
+// Quand je suis sur la page NewBill et que je soumets mon nouveau bill
+// Alors il doit sauvegarder le bill nouvellement créé
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page and i submit my new bill", () => {
     test("Then must save the newly created bill", async () => {
@@ -44,6 +47,8 @@ describe("Given I am connected as an employee", () => {
     });
   })
 
+  // Quand j'envoie une nouvelle note de frais
+  // Alors je suis redirigé vers la page Bills
   describe("When I submit a new Bill", () => {
     test("Then show the new bill page", async () => {
       localStorage.setItem("user", JSON.stringify({type: "Employee", email: "a@a"}));
@@ -54,6 +59,7 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.NewBill)
     })
 
+    // Je verifie que le fichier de la note de frais est correctement sauvegardé
     test("Then verify the file bill to be correctly saved", async () => {
       jest.spyOn(mockStore, "bills")
 
