@@ -15,7 +15,7 @@ import router from "../app/Router.js";
 
 jest.mock("../app/Store", () => mockStore)
 
-// Check si l'icone s'affiche sur la gauche est surligner
+// Check si l'icône s'affiche sur la gauche est surlignée
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
     test("Then bill icon in vertical layout should be highlighted", async () => {
